@@ -1,0 +1,20 @@
+footer {
+    background: #3bc1a0;
+}
+
+
+.main-footer {
+    padding: 0 425px;
+    display: flex;
+    flex-direction: row;
+    width: 1240px;
+    gap: 240px;
+}
+
+.mem {
+    border-radius: 30%;
+}
+
+.main-footer p {
+    margin: 0;
+}

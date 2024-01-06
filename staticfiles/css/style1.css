@@ -260,9 +260,81 @@ body {
   margin-bottom: 15px;
 }
 
-ol {
+.skills {
+  padding: 0;
+  margin: 50px 450px 55px;
+}
+
+.blog-article-3 {
+  padding: 0 80px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+ol {
+  margin-top: 0;
+  padding: 0;
+  list-style: none;
+  margin-right: 20px;
+}
+
+ol li {
+  margin: 0 0 30px;
+}
+
+.benefits {
+  margin: 55px 350px 55px;
+}
+
+.blog-article-4 {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0 80px;
+}
+
+.benefits-items {
+  padding: 0;
+  list-style: none;
+}
+
+.benefits-items li {
+  margin: 20px 0 0 80px;
+  text-align: left;
+}
+
+.benefits-items li:nth-child(1) {
+  margin-top: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.benefit-img {
+  margin-top: 20px;
+}
+
+.perspectives {
+  margin-top: 55px;
+  margin-left: 450px;
+}
+
+.blog-article-5 p{
+  width: 1170px;
+  text-align: center;
+}
+
+.end {
+  margin-top: 55px;
+  margin-left: 516px;
+}
+
+.blog-article-6 p{
+  width: 1170px;
+  text-align: center;
+}
+
+.blog-article-6 {
+    margin-bottom: 60px;
 }
 
 .more {

@@ -6,8 +6,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link href="{% static 'css/menu_styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style1.css'%}" rel="stylesheet">
+    <link href="{% static 'css/menu_styles.css'%}" rel="stylesheet">
+    <link href="{% static 'css/footer-styles.css'%}" rel="stylesheet">
     <title>Devops-инженер</title>
   </head>
   <body class="page">
@@ -59,29 +60,25 @@
               Инженер внедряет практики DevOps, сотрудничает с разработчиками и системными администраторами, автоматизирует процессы и следит за качеством продукта от начала до конечного пользователя.</p>
           <button class="more" type="button">Читать дальше</button>
         </div>
-        <img class="blog-article-img" src="{% static 'img/engineer.jpg' %}" width="600" height="252" alt="">
+        <img class="blog-article-img" src="{% static 'img/roles.png' %}" width="600" height="252" alt="">
       </article>
-        <article class="blog-article blog-article-3 short">
+      <h2 class="skills">Навыки и Компетенции</h2>
+        <article class="blog-article-3">
         <div class="blog-article-content">
-          <h2>Навыки и Компетенции</h2>
-          <p class="blog-article-description">
                 <ol>
-                    <div>
                     <li><strong>Автоматизация и Инструменты:</strong> DevOps инженер должен владеть современными инструментами автоматизации, такими как Ansible, Puppet, Chef, и системами контроля версий, вроде Git. Также важно иметь опыт с инструментами для непрерывной интеграции и поставки, вроде Jenkins или GitLab CI.</li>
                     <li><strong>Облачные Технологии:</strong> Знание облачных платформ, таких как AWS, Azure или Google Cloud, является ключевым. DevOps инженер должен быть способен развертывать, масштабировать и управлять приложениями в облаке.</li>
-                    </div>
-            <div>
                     <li><strong>Системное Администрирование:</strong> Понимание операционных систем, сетей и баз данных – это неотъемлемая часть компетенций. DevOps инженер должен быть готов решать проблемы на уровне инфраструктуры.</li>
                     <li><strong>Коммуникация и Сотрудничество:</strong> Способность эффективно общаться с разработчиками, тестировщиками и другими членами команды не менее важна. DevOps подразумевает тесное сотрудничество, и умение эффективно передавать информацию – ключевой элемент успеха.</li>
                 </ol>
-            </div>
         </div>
+          <img src="{% static 'img/skills.jpg' %}" width="600" height="680" alt="">
       </article>
-        <article class="blog-article blog-article-4 short">
+      <h2 class="benefits">Преимущества DevOps для Организации</h2>
+        <article class="blog-article-4">
+          <img class="benefit-img" src="{% static 'img/benefits.jpg' %}" width="600" height="500" alt="">
         <div class="blog-article-content">
-          <h2>Преимущества DevOps для Организации</h2>
-          <p class="blog-article-description">
-                <ul>
+                <ul class="benefits-items">
                     <li><strong>Быстрая поставка продукта:</strong> DevOps ускоряет циклы разработки и внедрения, позволяя компаниям быстро реагировать на изменения рынка и внедрять новые функции.</li>
                     <li><strong>Надежность и Стабильность:</strong> Автоматизация и мониторинг позволяют предотвращать и реагировать на проблемы, обеспечивая стабильную работу системы.</li>
                     <li><strong>Снижение Рисков:</strong> Совместная работа команд уменьшает риск возникновения ошибок и ускоряет их устранение.</li>
@@ -89,25 +86,23 @@
                 </ul>
         </div>
       </article>
-      <article class="blog-article blog-article-5 short">
+      <h2 class="perspectives">Вызовы и Перспективы</h2>
+      <article class="blog-article-5">
         <div class="blog-article-content">
-          <h2>Вызовы и Перспективы</h2>
           <p class="blog-article-description">
               Внедрение DevOps может столкнуться с сопротивлением внутри организации. Необходимо изменение корпоративной культуры и обучение персонала.
               Тем не менее преимущества, которые DevOps приносит, оправдывают усилия,
               и многие компании уже видят в этом подходе будущее разработки программного обеспечения.
           </p>
-          <button class="more" type="button">Читать дальше</button>
         </div>
       </article>
-        <article class="blog-article blog-article-6 short">
+      <h2 class="end">Заключение</h2>
+        <article class="blog-article-6">
         <div class="blog-article-content">
-          <h2>Заключение</h2>
           <p class="blog-article-description">
               DevOps – это не просто профессия, это подход к разработке, который меняет взгляд на создание и поддержку программных продуктов.
               DevOps инженер – это специалист, способный переосмыслить и оптимизировать процессы, обеспечивая компании конкурентоспособность и эффективность в современном мире IT.
           </p>
-          <button class="more" type="button">Читать дальше</button>
         </div>
       </article>
     </main>

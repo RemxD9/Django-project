@@ -5,6 +5,9 @@
         <p class="logo">
           <img src="img/logo.svg" width="64" height="68" alt="Логотип проекта">
         </p>
+        <a class="signin" href="#">
+            <img src="{% static 'img/user.svg' %}" width="16" height="18" alt="Кабинет пользователя">
+        </a>
         <ul class="site-navigation">
           <li class="site-navigation-item">
             <a href="/">Главная</a>
@@ -22,7 +25,4 @@
             <a href="{% url 'Последние вакансии' %}">Последние вакансии</a>
           </li>
         </ul>
-        <a class="signin" href="#">
-          <img src="{% static 'img/user.svg' %}" width="16" height="18" alt="Кабинет пользователя">
-        </a>
     </nav>
