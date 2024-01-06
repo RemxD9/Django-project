@@ -24,7 +24,7 @@ body {
 .services-content {
   display: flex;
   align-items: center;
-  width: 1024px;
+  width: 1140px;
   margin: 0 auto;
 }
 
@@ -51,8 +51,7 @@ body {
 }
 
 .caption {
-  margin: 0;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
   font-weight: bold;
   font-size: 12px;
   line-height: 18px;
@@ -62,8 +61,7 @@ body {
 .theme-switcher {
   list-style: none;
   padding: 0;
-  margin: 0;
-  margin-right: 30px;
+  margin: 0 30px 0 0;
   display: flex;
   flex-wrap: wrap;
 }
@@ -187,73 +185,6 @@ body {
   opacity: 0.3;
 }
 
-.main-nav {
-  display: flex;
-  align-items: center;
-  width: 1170px;
-  margin: 0 auto;
-  padding: 20px 55px;
-}
-
-.logo {
-  width: 64px;
-  height: 68px;
-  margin: 0;
-  margin-right: auto;
-}
-
-.site-navigation {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-  margin-right: 40px;
-  list-style: none;
-  max-width: 990px;
-}
-
-.site-navigation-item {
-  margin-right: 30px;
-}
-
-.site-navigation-item:last-child {
-  margin-right: 0;
-}
-
-.site-navigation-item a {
-  font-size: 14px;
-  line-height: 18px;
-  color: #163152;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.site-navigation-item a:hover {
-  color: rgba(22, 49, 82, 0.5);
-}
-
-.site-navigation-item a:active {
-  color: rgba(22, 49, 82, 0.3);
-}
-
-.signin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid #00c6bd;
-  border-radius: 50%;
-}
-
-.signin:hover {
-  opacity: 0.5;
-}
-
-.signin:active {
-  opacity: 0.3;
-}
-
 /* main */
 
 .main-content {
@@ -267,9 +198,7 @@ body {
 }
 
 .hero h1 {
-  margin-top: 0;
-  margin-bottom: 40px;
-  margin-left: 70px;
+  margin: 0 auto 40px;
   font-style: italic;
   font-weight: normal;
   font-size: 44px;
@@ -320,28 +249,20 @@ body {
 }
 
 .blog-article h2 {
-  margin-top: 0;
-  margin-bottom: 35px;
+  margin: 0 auto 35px;
   font-size: 24px;
   line-height: 34px;
-  text-decoration: underline;
-  text-decoration-color: #00c6bd;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 15px;
-  text-underline-position: under;
-}
-
-.blog-article-date {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 18px;
-  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .blog-article-description {
   margin-top: 0;
   margin-bottom: 15px;
+}
+
+ol {
+  display: flex;
+  flex-direction: column;
 }
 
 .more {
@@ -353,8 +274,6 @@ body {
   text-decoration-line: underline;
   background-color: transparent;
   border: none;
-
-  /* Элемент скрыт в развернутой статье */
   display: none;
 }
 
@@ -377,13 +296,8 @@ body {
 }
 
 .blog-article.short .more {
-  /* Показываем элемент в свернутой статье */
   display: inline-block;
 }
-
-
-/* footer */
-
 
 /* Выделение активной кнопки */
 
@@ -434,33 +348,5 @@ body {
 }
 
 .page.dark .signin img {
-  filter: brightness(20);
-}
-
-.page.dark .card-view-button-grid {
-  background-image: url("../img/grid-light.svg");
-}
-
-.page.dark .card-view-button-list {
-  background-image: url("../img/list-light.svg");
-}
-
-.page.dark .card {
-  box-shadow: 0 4px 30px #181a1a;
-}
-
-.page.dark .meta time {
-  color: rgba(253, 253, 255, 0.5);
-}
-
-.page.dark .share {
-  filter: brightness(20);
-}
-
-.page.dark .social-item img {
-  filter: brightness(20);
-}
-
-.page.dark .post-share {
   filter: brightness(20);
 }
