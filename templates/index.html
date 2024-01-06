@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <title>Devops-инженер</title>
+  </head>
+  <body class="page">
+    <header class="page-header">
+      <div class="services">
+        <div class="services-content">
+          <p class="caption">Тема</p>
+          <ul class="theme-switcher">
+            <li>
+              <button class="theme-button-dark" type="button"></button>
+            </li>
+            <li>
+              <button class="theme-button-light active" type="button"></button>
+            </li>
+          </ul>
+          <p class="caption">Шрифт</p>
+          <ul class="fonts">
+            <li>
+              <button class="font-button-sans-serif active" type="button">А</button>
+            </li>
+            <li>
+              <button class="font-button-serif" type="button">А</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <p class="logo">
+          <img src="img/logo.svg" width="64" height="68" alt="Логотип проекта">
+        </p>
+        <ul class="site-navigation">
+          <li class="site-navigation-item">
+            <a href="#">Главная</a>
+          </li>
+          <li class="site-navigation-item">
+            <a href="popularity/">Востребованность</a>
+          </li>
+          <li class="site-navigation-item">
+            <a href="geography/">География</a>
+          </li>
+          <li class="site-navigation-item">
+            <a href="skills/">Навыки</a>
+          </li>
+          <li class="site-navigation-item">
+            <a href="lastvacancies/">Последние вакансии</a>
+          </li>
+        </ul>
+        <a class="signin" href="#">
+          <img src="{% static 'img/user.svg' %}" width="16" height="18" alt="Кабинет пользователя">
+        </a>
+      </nav>
+    </header>
+    <main class="main-content">
+      <section class="hero">
+        <h1>Devops-инженер</h1>
+        <img src="{% static 'img/DevOps.png' %}" width="1024" height="466" alt="Devops-инженер">
+      </section>
+      <article class="blog-article blog-article-1 short">
+        <div class="blog-article-content">
+          <p class="blog-article-date"><time datetime="2021-10-20">20 октября</time> - <time datetime="2021-04-19">19 апреля</time></p>
+          <h2>Стань частью команды</h2>
+          <p class="blog-article-description">Если вы давно хотели попробовать себя в яхтинге – сейчас самое лучшее время! Мы набираем команду будущих шкиперов. За 6 вы станете настоящим капитаном и уже в следующем сезоне сможете самостоятельно выйти в море!</p>
+          <button class="more" type="button">Читать дальше</button>
+        </div>
+        <img class="blog-article-img" src="img/blog-photo-1.jpg" width="600" height="262" alt="Мужчина на яхте смотрит в бинокль">
+      </article>
+      <article class="blog-article blog-article-2 short">
+        <div class="blog-article-content">
+          <p class="blog-article-date"><time datetime="2021-07-16">16 июля</time> - <time datetime="2021-07-23">23 июля</time></p>
+          <h2>Рожденные в воде</h2>
+          <p class="blog-article-description">Подарите детям настоящее приключение! День с морскими пиратами на корабле – это лучшая команда, веселые аниматоры, игры, соревнования, работа в команде и, конечно, море!</p>
+          <button class="more" type="button">Читать дальше</button>
+        </div>
+        <img class="blog-article-img" src="img/blog-photo-2.jpg" width="600" height="252" alt="Дети и взрослые на яхте">
+      </article>
+    </main>
+    <footer class="main-footer">
+        <p>Яцук Владислав Романович</p>
+        <p>РИ-220935</p>
+    </footer>
+    <script src="{% static 'scripts/fonts.js'%}"></script>
+    <script src="{% static 'scripts/themes.js'%}"></script>
+    <script src="{% static 'scripts/show-content.js'%}"></script>
+  </body>
+</html>
