@@ -1,8 +1,11 @@
+import math
 from datetime import datetime
 import requests
+import json
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Vacancy
+import pandas as pd
 
 
 def main_page(request):
