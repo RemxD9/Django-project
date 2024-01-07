@@ -1,9 +1,7 @@
 from datetime import datetime
-
 import requests
 from django.shortcuts import render
 from django.utils import timezone
-
 from .models import Vacancy
 
 
@@ -86,4 +84,4 @@ def last_vacancies(request):
         Vacancy.objects.create(**vacancy_data)
 
     context = {'vacancies': Vacancy.objects.all()}
-    return render(request, 'last_vacancies.html', context)
+    return render(request, 'last-vacancies.html', context)
