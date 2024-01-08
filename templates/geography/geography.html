@@ -42,36 +42,36 @@
     </header>
     <main class="main-content">
       <section class="hero">
-        <h1>Динамика уровня зарплат по годам</h1>
+        <h1>Уровень зарплат по городам</h1>
           <div class="table">
-            {% include 'salary-dynamic-by-year.html' %}
+            {% include 'geography/salary-dynamic-by-city.html' %}
           </div>
           <div class="graph">
               <img src="{% static 'img/salary-graph.png' %}" width="640" height="360" alt="График динамики уровня зарплат">
           </div>
       </section>
       <section class="vacancies-count-by-year">
-        <h1>Динамика количества вакансий по годам</h1>
+        <h1>Доля вакансий по городам</h1>
           <div class="table">
-            {% include 'count-dynamic-by-year.html' %}
+            {% include 'geography/vacancy-rate-by-city.html' %}
           </div>
           <div class="graph">
               <img src="{% static 'img/count-graph.png' %}" width="640" height="360" alt="График кол-ва вакансий по годам">
           </div>
       </section>
         <section class="profession-salary-by-year">
-        <h1>Динамика уровня зарплат по годам для выбранной профессии</h1>
+        <h1>Уровень зарплат по городам для выбранной профессии</h1>
           <div class="table">
-            {% include 'profession-salary-dynamic-by-year.html' %}
+            {% include 'geography/profession-salary-dynamic-by-city.html' %}
           </div>
           <div class="graph">
               <img src="{% static 'img/profsalary-graph.png' %}" width="640" height="360" alt="График динамики зарплат по годам">
           </div>
       </section>
         <section class="profession-count-vacancies-by-year">
-        <h1>Динамика количества вакансий по годам для выбранной профессии</h1>
+        <h1>Доля вакансий по городам для выбранной профессии</h1>
           <div class="table">
-            {% include 'profession-count-dynamic-by-year.html' %}
+            {% include 'geography/profession-vacancy-rate-by-city.html' %}
           </div>
           <div class="graph">
               <img src="{% static 'img/profession-count-dynamic-graph.png' %}" width="640" height="360" alt="График динамики кол-ва вакансий по профессии по годам">
