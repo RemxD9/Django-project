@@ -22,7 +22,7 @@ def convert_salary(row):
 
 
 def creating_html_tables():
-    selected_profession = 'devops'
+    selected_profession = 'Devops-инженер'
     csv_file = "vacancies.csv"
     data = pd.read_csv(csv_file, usecols=['name', 'salary_from', 'salary_to', 'salary_currency', 'area_name', 'published_at'])
     data['published_at'] = pd.to_datetime(data['published_at'], utc=True).dt.strftime("%Y-%m")
@@ -48,16 +48,16 @@ def creating_html_tables():
     selected_df_percent = selected_profession_data.rename(columns={'area_name': 'Город'}).sort_values(
         'vacancy_rate', ascending=False).drop(['average_salary'], axis=1).reset_index().drop(['index'], axis=1)
     df4 = selected_df_percent.to_html()
-    f1 = open("geography/salary-dynamic-by-city.html", "w", encoding='utf-8')
+    f1 = open("salary-dynamic-by-city.html", "w", encoding='utf-8')
     f1.write(df1)
     f1.close()
-    f2 = open("geography/vacancy-rate-by-city.html", "w", encoding='utf-8')
+    f2 = open("vacancy-rate-by-city.html", "w", encoding='utf-8')
     f2.write(df2)
     f2.close()
-    f3 = open("geography/profession-salary-dynamic-by-city.html", "w", encoding='utf-8')
+    f3 = open("profession-salary-dynamic-by-city.html", "w", encoding='utf-8')
     f3.write(df3)
     f3.close()
-    f4 = open("geography/profession-vacancy-rate-by-city.html", "w", encoding='utf-8')
+    f4 = open("profession-vacancy-rate-by-city.html", "w", encoding='utf-8')
     f4.write(df4)
     f4.close()
 

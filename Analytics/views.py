@@ -9,19 +9,19 @@ import pandas as pd
 
 
 def main_page(request):
-    return render(request, 'mainpage.html')
+    return render(request, 'main-page.html')
 
 
 def popularity(request):
-    return render(request, 'popularity.html')
+    return render(request, 'popularity/popularity.html')
 
 
 def geography(request):
-    return render(request, 'geography.html')
+    return render(request, 'geography/geography.html')
 
 
 def skills(request):
-    return render(request, 'skills.html')
+    return render(request, 'skills/skills.html')
 
 
 def get_hh_vacancy_description(vacancy_id):
@@ -87,4 +87,4 @@ def last_vacancies(request):
         Vacancy.objects.create(**vacancy_data)
 
     context = {'vacancies': Vacancy.objects.all()}
-    return render(request, 'last-vacancies.html', context)
+    return render(request, 'last_vacancies/last-vacancies.html', context)

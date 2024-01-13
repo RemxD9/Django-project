@@ -22,7 +22,7 @@ def convert_salary(row):
 
 
 def creating_html_tables():
-    selected_profession = 'devops'
+    selected_profession = 'Devops-инженер'
     csv_file = "vacancies.csv"
     data = pd.read_csv(csv_file, usecols=['name', 'salary_from', 'salary_to', 'salary_currency', 'published_at'])
     data['published_at'] = pd.to_datetime(data['published_at'], utc=True).dt.strftime("%Y-%m")
@@ -48,22 +48,22 @@ def creating_html_tables():
     vacancies_all_count = years_df['name'].tolist()
     vacancies_count_profession_by_year = selected_profession_data.groupby('Год')['name'].count().reset_index()
     vacancies_count_profession_by_year = vacancies_count_profession_by_year.rename(
-        columns={'name': 'count'})  # кол-во вакансий по годам для профессии
-    df1 = average_salary_all.reset_index().to_html()  # зп для всех
+        columns={'name': 'Количество'})  # кол-во вакансий по годам для профессии
+    df1 = average_salary_all.reset_index().to_html(index=False)  # зп для всех
     df2 = years_df.set_index('Год').rename(
-        columns={'name': 'vacancy_count'}).reset_index().to_html()  # кол-во вакансии
-    df3 = selected_salary_all.reset_index().to_html()  # зп для профессии
-    df4 = vacancies_count_profession_by_year.to_html()  # выбранная вакансия
-    f1 = open("popularity/salary-dynamic-by-year.html", "w", encoding='utf-8')
+        columns={'name': 'vacancy_count'}).reset_index().to_html(index=False)  # кол-во вакансии
+    df3 = selected_salary_all.reset_index().to_html(index=False)  # зп для профессии
+    df4 = vacancies_count_profession_by_year.to_html(index=False)  # выбранная вакансия
+    f1 = open("popularity/tables/salary-dynamic-by-year.html", "w", encoding='utf-8')
     f1.write(df1)
     f1.close()
-    f2 = open("popularity/count-dynamic-by-year.html", "w", encoding='utf-8')
+    f2 = open("popularity/tables/count-dynamic-by-year.html", "w", encoding='utf-8')
     f2.write(df2)
     f2.close()
-    f3 = open("popularity/profession-salary-dynamic-by-year.html", "w", encoding='utf-8')
+    f3 = open("popularity/tables/profession-salary-dynamic-by-year.html", "w", encoding='utf-8')
     f3.write(df3)
     f3.close()
-    f4 = open("popularity/profession-count-dynamic-by-year.html", "w", encoding='utf-8')
+    f4 = open("popularity/tables/profession-count-dynamic-by-year.html", "w", encoding='utf-8')
     f4.write(df4)
     f4.close()
     return

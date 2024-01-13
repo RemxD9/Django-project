@@ -32,6 +32,17 @@ body {
     margin-left: 240px;
 }
 
+section {
+  display: flex;
+  flex-direction: column;
+  margin-left: 75px;
+  margin-bottom: 90px;
+}
+
+section > h1 {
+  margin: 0 0 60px;
+}
+
 .caption {
   margin: 0 10px 0 0;
   font-weight: bold;
