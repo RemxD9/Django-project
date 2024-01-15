@@ -28,14 +28,6 @@ body {
   margin: 0 auto;
 }
 
-main > div {
-  display: flex;
-  flex-direction: column;
-}
-
-section > h1 {
-  margin: 45px 75px;
-}
 
 .caption {
   margin: 0 10px 0 0;
@@ -113,6 +105,38 @@ section > h1 {
   background-image: url("../img/moon-light.svg");
 }
 
+section {
+  display: flex;
+}
+
+section > h1 {
+  margin: 55px auto 100px;
+}
+
+b {
+    font-size: 18px;
+}
+
+.vacancies {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+  margin: 10px auto 20px;
+  font-size: 20px;
+}
+
+.vacancies li {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  border: 3px solid #3bc1a0;
+  margin-bottom: 10px;
+}
 
 .fonts {
   list-style: none;
