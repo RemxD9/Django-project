@@ -1,11 +1,8 @@
-import math
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
-import json
 from django.shortcuts import render
-from django.utils import timezone
 from .models import Vacancy
-import pandas as pd
+import re
 
 
 def main_page(request):
@@ -24,67 +21,69 @@ def skills(request):
     return render(request, 'skills/skills.html')
 
 
-def get_hh_vacancy_description(vacancy_id):
-    url = f'https://api.hh.ru/vacancies/{vacancy_id}'
-    response = requests.get(url)
-    data = response.json()
-    return data.get('description', '')
+def last_vacancies(request):
+    # API HH URL
+    hh_api_url = 'https://api.hh.ru/vacancies'
 
+    # Заголовок запроса
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 
-def get_hh_vacancy_skills(vacancy_id):
-    url = f'https://api.hh.ru/vacancies/{vacancy_id}/key_skills'
-    response = requests.get(url)
-    data = response.json()
-    skills = ', '.join(skill.get('name', '') for skill in data)
-    return skills
+    # Параметры запроса: профессия и период (24 часа назад до текущего момента)
+    profession = 'DevOps-инженер'  # Здесь нужно указать выбранную профессию
+    period = 24
 
+    date_from = datetime.now() - timedelta(hours=period)
 
-def get_hh_vacancies(profession):
-    url = f'https://api.hh.ru/vacancies'
+    # Опции запроса
     params = {
         'text': profession,
-        'area': 1,
-        'period': 1,
+        'date_from': date_from.strftime('%Y-%m-%dT%H:%M:%SZ'),
         'per_page': 10,
-        'order_by': 'published_at',
+        'order_by': 'publication_time'
     }
-    response = requests.get(url, params=params)
-    data = response.json().get('items', [])
 
-    vacancies = []
-    for item in data:
-        vacancy_id = item.get('id', '')
-        description = get_hh_vacancy_description(vacancy_id)
-        skills = get_hh_vacancy_skills(vacancy_id)
+    # Отправка GET-запроса к API HH
+    response = requests.get(hh_api_url, params=params, headers=headers)
+    data = response.json()
+    vacancies_data = data.get('items', [])
+    # Обработка данных о вакансиях
+    vacancies_list = []
+    for vacancy_data in vacancies_data:
+        if not (None in vacancy_data.values()):
+            vacancy = Vacancy()
+            vacancy.title = vacancy_data.get('name')
+            vacancy.description = get_vacancy_description(vacancy_data.get('url'))
+            vacancy.skills = get_vacancy_skills(vacancy_data.get('url'))
+            vacancy.company = vacancy_data.get('employer').get('name')
+            vacancy.salary = vacancy_data.get('salary').get('from')
+            vacancy.area_name = vacancy_data.get('area').get('name')
+            vacancy.published_at = datetime.strptime(vacancy_data.get('published_at'), '%Y-%m-%dT%H:%M:%S%z')
 
-        vacancy = {
-            'title': item.get('name', ''),
-            'description': description,
-            'skills': skills,
-            'company': item.get('employer', {}).get('name', ''),
-            'salary': item.get('salary', {}).get('from', ''),
-            'region': item.get('area', {}).get('name', ''),
-            'publication_date': datetime.fromisoformat(item.get('published_at')).replace(tzinfo=timezone.utc),
-        }
-        vacancies.append(vacancy)
+            vacancies_list.append(vacancy)
+    # Сохранение вакансий в базе данных
+    Vacancy.objects.bulk_create(vacancies_list)
 
-    return vacancies
+    # Получение и отображение списка последних вакансий
+    last_vacancies = Vacancy.objects.order_by('-published_at')[:10]
 
-
-def get_hh_vacancies_for_multiple_professions(professions):
-    all_vacancies = []
-    for profession in professions:
-        vacancies = get_hh_vacancies(profession)
-        all_vacancies.extend(vacancies)
-    return all_vacancies
+    return render(request, 'last_vacancies/last-vacancies.html', {'last_vacancies': last_vacancies})
 
 
-def last_vacancies(request):
-    professions = ['devops', 'development operations']
-    vacancies = get_hh_vacancies_for_multiple_professions(professions)
+def get_vacancy_description(vacancy_url):
+    # Отправка GET-запроса к API HH для получения данных о вакансии
+    response = requests.get(vacancy_url)
+    vacancy_data = response.json()
 
-    for vacancy_data in vacancies:
-        Vacancy.objects.create(**vacancy_data)
+    return vacancy_data['description']
 
-    context = {'vacancies': Vacancy.objects.all()}
-    return render(request, 'last_vacancies/last-vacancies.html', context)
+
+def get_vacancy_skills(vacancy_url):
+    # Отправка GET-запроса к API HH для получения данных о вакансии
+    response = requests.get(vacancy_url)
+    vacancy_data = response.json()
+    skills = []
+
+    for skill_data in vacancy_data['key_skills']:
+        skills.append(skill_data['name'])
+
+    return ', '.join(skills)

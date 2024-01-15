@@ -9,7 +9,8 @@
     <link href="{% static 'css/popularity-styles.css' %}" rel="stylesheet">
     <link href="{% static 'css/menu_styles.css' %}" rel="stylesheet">
     <link href="{% static 'css/footer-styles.css' %}" rel="stylesheet">
-    <title>Devops-инженер</title>
+    <link href="{% static 'css/table-styles.css'%}" rel="stylesheet">
+    <title>Devops-инженер, востребованность</title>
   </head>
   <body class="page">
     <header class="page-header">
@@ -33,48 +34,46 @@
               <button class="font-button-serif" type="button">А</button>
             </li>
           </ul>
+            <p class="profession">DevOps-инженер</p>
         </div>
-      </div>
-      <div class="title">
-          <p class="profession">DevOps-инженер</p>
       </div>
       {% include 'menu.html' %}
     </header>
     <main class="main-content">
       <section class="hero">
         <h1>Динамика уровня зарплат по годам</h1>
-          <div class="table">
-            {% include 'popularity/salary-dynamic-by-year.html' %}
-          </div>
           <div class="graph">
-              <img src="{% static 'img/salary-graph.png' %}" width="640" height="360" alt="График динамики уровня зарплат">
+              <img src="{% static 'img/popularity/salary-dynamic-by-year.png' %}" width="840" height="460" alt="График динамики уровня зарплат">
+          </div>
+          <div class="table">
+            {% include 'popularity/tables/salary-dynamic-by-year.html' %}
           </div>
       </section>
       <section class="vacancies-count-by-year">
         <h1>Динамика количества вакансий по годам</h1>
-          <div class="table">
-            {% include 'popularity/count-dynamic-by-year.html' %}
-          </div>
           <div class="graph">
-              <img src="{% static 'img/count-graph.png' %}" width="640" height="360" alt="График кол-ва вакансий по годам">
+              <img src="{% static 'img/popularity/count-dynamic-by-year.png' %}" width="840" height="460" alt="График кол-ва вакансий по годам">
+          </div>
+          <div class="table">
+            {% include 'popularity/tables/count-dynamic-by-year.html' %}
           </div>
       </section>
         <section class="profession-salary-by-year">
         <h1>Динамика уровня зарплат по годам для выбранной профессии</h1>
-          <div class="table">
-            {% include 'popularity/profession-salary-dynamic-by-year.html' %}
-          </div>
           <div class="graph">
-              <img src="{% static 'img/profsalary-graph.png' %}" width="640" height="360" alt="График динамики зарплат по годам">
+              <img src="{% static 'img/popularity/profession-salary-dynamic-by-year.png' %}" width="840" height="460" alt="График динамики зарплат по годам">
+          </div>
+          <div class="table">
+            {% include 'popularity/tables/profession-salary-dynamic-by-year.html' %}
           </div>
       </section>
         <section class="profession-count-vacancies-by-year">
         <h1>Динамика количества вакансий по годам для выбранной профессии</h1>
-          <div class="table">
-            {% include 'popularity/profession-count-dynamic-by-year.html' %}
-          </div>
           <div class="graph">
-              <img src="{% static 'img/profession-count-dynamic-graph.png' %}" width="640" height="360" alt="График динамики кол-ва вакансий по профессии по годам">
+              <img src="{% static 'img/popularity/profession-count-dynamic-by-year.png' %}" width="840" height="460" alt="График динамики кол-ва вакансий по профессии по годам">
+          </div>
+          <div class="table">
+            {% include 'popularity/tables/profession-count-dynamic-by-year.html' %}
           </div>
       </section>
     </main>

@@ -1,6 +1,6 @@
-import numpy as np
 import pandas as pd
 import math
+import matplotlib.pyplot as plt
 
 
 def convert_salary(row):
@@ -38,33 +38,61 @@ def creating_html_tables():
     converted_df['average_salary'] = converted_df[['salary_from', 'salary_to']].mean(axis=1, skipna=True).apply(
         math.floor).astype(
         int)
-    years = sorted(converted_df['Год'].unique())
-    average_salary_all = converted_df.groupby('Год')['average_salary'].mean().apply(math.floor).astype(
-        int).to_frame()  # зарплата по годам
-    selected_profession_data = converted_df[converted_df.name.str.contains(selected_profession, na=False, case=False)]
-    selected_salary_all = selected_profession_data.groupby('Год')[
-        'average_salary'].mean().astype(int).to_frame()  # зарплата по годам выбранная
-    years_df = converted_df.groupby('Год')['name'].count().reset_index()  # кол-во вакансий по годам
-    vacancies_all_count = years_df['name'].tolist()
-    vacancies_count_profession_by_year = selected_profession_data.groupby('Год')['name'].count().reset_index()
-    vacancies_count_profession_by_year = vacancies_count_profession_by_year.rename(
-        columns={'name': 'Количество'})  # кол-во вакансий по годам для профессии
-    df1 = average_salary_all.reset_index().to_html(index=False)  # зп для всех
-    df2 = years_df.set_index('Год').rename(
-        columns={'name': 'vacancy_count'}).reset_index().to_html(index=False)  # кол-во вакансии
-    df3 = selected_salary_all.reset_index().to_html(index=False)  # зп для профессии
-    df4 = vacancies_count_profession_by_year.to_html(index=False)  # выбранная вакансия
+    average_salary_all = converted_df.groupby('Год').agg({
+        'average_salary': 'mean'
+    }).reset_index().dropna(subset=['average_salary'])
+    average_salary_all.columns = ['Год', 'Средняя зарплата']
+    average_salary_all['Средняя зарплата'] = average_salary_all['Средняя зарплата'].apply(math.floor).astype(int)
+    df1 = average_salary_all
+    plt.figure(figsize=(16, 8))
+    plt.bar(df1['Год'], df1['Средняя зарплата'])
+    plt.xticks(df1['Год'])
+    plt.title('Средняя зарплата по годам', fontdict={'fontsize': 24})
+    plt.tight_layout()
+    plt.savefig(f"popularity/graphs/salary-dynamic-by-year.png", dpi=100)
+    plt.clf()
     f1 = open("popularity/tables/salary-dynamic-by-year.html", "w", encoding='utf-8')
-    f1.write(df1)
+    f1.write(df1.to_html(index=False))
     f1.close()
+    years_df = converted_df.groupby('Год').agg({'name': 'count'}).reset_index()
+    years_df.columns = ['Год', 'Количество вакансий']
+    df2 = years_df
+    plt.figure(figsize=(16, 8))
+    plt.bar(df2['Год'], df2['Количество вакансий'])
+    plt.xticks(df2['Год'])
+    plt.title('Количество вакансий по годам', fontdict={'fontsize': 24})
+    plt.tight_layout()
+    plt.savefig(f"popularity/graphs/count-dynamic-by-year.png", dpi=100)
+    plt.clf()
     f2 = open("popularity/tables/count-dynamic-by-year.html", "w", encoding='utf-8')
-    f2.write(df2)
+    f2.write(df2.to_html(index=False))
     f2.close()
+    selected_profession_data = converted_df[converted_df.name.str.contains(selected_profession, na=False, case=False)]
+    selected_salary_all = selected_profession_data.groupby('Год').agg({'average_salary': 'mean'}).reset_index()
+    selected_salary_all.columns = ['Год', 'Средняя зарплата']
+    selected_salary_all['Средняя зарплата'] = selected_salary_all['Средняя зарплата'].apply(math.floor).astype(int)
+    df3 = selected_salary_all
+    plt.figure(figsize=(16, 8))
+    plt.bar(df3['Год'], df3['Средняя зарплата'])
+    plt.xticks(df3['Год'])
+    plt.title('Средняя зарплата по годам для выбранной профессии', fontdict={'fontsize': 24})
+    plt.tight_layout()
+    plt.savefig(f"popularity/graphs/profession-salary-dynamic-by-year.png", dpi=100)
+    plt.clf()
     f3 = open("popularity/tables/profession-salary-dynamic-by-year.html", "w", encoding='utf-8')
-    f3.write(df3)
+    f3.write(df3.to_html(index=False))
     f3.close()
+    selected_years_df = selected_profession_data.groupby('Год').agg({'name': 'count'}).reset_index()
+    selected_years_df.columns = ['Год', 'Количество вакансий']
+    df4 = selected_years_df
+    plt.figure(figsize=(16, 8))
+    plt.bar(df4['Год'], df4['Количество вакансий'])
+    plt.xticks(df4['Год'])
+    plt.title('Количество вакансий по годам для выбранной профессии', fontdict={'fontsize': 24})
+    plt.tight_layout()
+    plt.savefig(f"popularity/graphs/profession-count-dynamic-by-year.png", dpi=100)
     f4 = open("popularity/tables/profession-count-dynamic-by-year.html", "w", encoding='utf-8')
-    f4.write(df4)
+    f4.write(df4.to_html(index=False))
     f4.close()
     return
 

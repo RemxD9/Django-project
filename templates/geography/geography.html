@@ -6,10 +6,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="{% static 'css/popularity-styles.css'%}" rel="stylesheet">
+    <link href="{% static 'css/geography-styles.css'%}" rel="stylesheet">
     <link href="{% static 'css/menu_styles.css'%}" rel="stylesheet">
     <link href="{% static 'css/footer-styles.css'%}" rel="stylesheet">
-    <title>Devops-инженер</title>
+    <link href="{% static 'css/table-styles.css'%}" rel="stylesheet">
+    <title>Devops-инженер, география</title>
   </head>
   <body class="page">
     <header class="page-header">
@@ -33,48 +34,46 @@
               <button class="font-button-serif" type="button">А</button>
             </li>
           </ul>
+            <p class="profession">DevOps-инженер</p>
         </div>
-      </div>
-      <div class="title">
-          <p class="profession">DevOps-инженер</p>
       </div>
       {% include 'menu.html' %}
     </header>
     <main class="main-content">
       <section class="hero">
         <h1>Уровень зарплат по городам</h1>
-          <div class="table">
-            {% include 'geography/salary-dynamic-by-city.html' %}
-          </div>
           <div class="graph">
-              <img src="{% static 'img/salary-graph.png' %}" width="640" height="360" alt="График динамики уровня зарплат">
+              <img src="{% static 'img/geography/graph_top_20_cities_by_salary.png' %}" width="640" height="360" alt="График динамики уровня зарплат по городам">
+          </div>
+          <div class="table">
+            {% include 'geography/tables/top_20_cities_by_salary.html' %}
           </div>
       </section>
       <section class="vacancies-count-by-year">
         <h1>Доля вакансий по городам</h1>
-          <div class="table">
-            {% include 'geography/vacancy-rate-by-city.html' %}
-          </div>
           <div class="graph">
-              <img src="{% static 'img/count-graph.png' %}" width="640" height="360" alt="График кол-ва вакансий по годам">
+              <img src="{% static 'img/geography/graph_top_20_cities_by_rate.png' %}" width="640" height="360" alt="График долей вакансий по городам">
+          </div>
+          <div class="table">
+            {% include 'geography/tables/top_20_cities_by_rate.html' %}
           </div>
       </section>
         <section class="profession-salary-by-year">
         <h1>Уровень зарплат по городам для выбранной профессии</h1>
-          <div class="table">
-            {% include 'geography/profession-salary-dynamic-by-city.html' %}
-          </div>
           <div class="graph">
-              <img src="{% static 'img/profsalary-graph.png' %}" width="640" height="360" alt="График динамики зарплат по годам">
+              <img src="{% static 'img/geography/prof_graph_top_20_cities_by_salary.png' %}" width="640" height="360" alt="График динамики зарплат по горлдам для выбранной профессии">
+          </div>
+          <div class="table">
+            {% include 'geography/tables/prof_top_20_cities_by_salary.html' %}
           </div>
       </section>
         <section class="profession-count-vacancies-by-year">
         <h1>Доля вакансий по городам для выбранной профессии</h1>
-          <div class="table">
-            {% include 'geography/profession-vacancy-rate-by-city.html' %}
-          </div>
           <div class="graph">
-              <img src="{% static 'img/profession-count-dynamic-graph.png' %}" width="640" height="360" alt="График динамики кол-ва вакансий по профессии по годам">
+              <img src="{% static 'img/geography/prof_graph_top_20_cities_by_rate.png' %}" width="640" height="360" alt="График доли вакансий по городам для выбранной профессии">
+          </div>
+          <div class="table">
+            {% include 'geography/tables/prof_top_20_cities_by_rate.html' %}
           </div>
       </section>
     </main>

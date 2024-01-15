@@ -23,5 +23,6 @@ urlpatterns = [
     path('popularity/', views.popularity, name='Востребованность'),
     path('geography/', views.geography, name='География'),
     path('skills/', views.skills, name='Навыки'),
-    path('lastvacancies/', views.last_vacancies, name='Последние вакансии')
+    path('lastvacancies/', views.last_vacancies, name='Последние вакансии'),
+    path('admin/', admin.site.urls),
 ]

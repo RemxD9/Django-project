@@ -34,7 +34,7 @@ def creating_plot(df, year):
     ax.tick_params(axis='y', labelright=False, labelleft=True)
     plt.title(year)
     plt.tight_layout()
-    plt.savefig(f"skills/graph/graph_prof_top_20_by_{year}.png")
+    plt.savefig(f"skills/graphs/graph_prof_top_20_by_{year}.png")
     return
 
 
