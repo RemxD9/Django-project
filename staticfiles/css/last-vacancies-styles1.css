@@ -133,10 +133,15 @@ h2 {
 .vacancies li {
   display: flex;
   flex-direction: column;
-  margin-left: 40px;
+  margin-left: 65px;
   border: 3px solid #3bc1a0;
   margin-bottom: 10px;
 }
+
+.vacancies li:nth-last-child(1) {
+  margin-bottom: 55px;
+}
+
 
 .fonts {
   list-style: none;

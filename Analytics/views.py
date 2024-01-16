@@ -1,9 +1,50 @@
 from datetime import datetime, timedelta
 import requests
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .models import Vacancy
 import re
 import json
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import RegistrationForm
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login_view')
+
+
+def registration_view(request):
+    if request.user.is_authenticated:
+        return redirect('user_profile')
+
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('user_profile')  # Перенаправление на страницу профиля пользователя
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('user_profile')  # Перенаправление на страницу профиля пользователя
+    else:
+        form = AuthenticationForm()
+    return render(request, 'registration/login.html', {'form': form})
+
+
+@login_required
+def user_profile(request):
+    return render(request, 'registration/user_profile.html')
 
 
 def main_page(request):
@@ -76,7 +117,6 @@ def last_vacancies(request):
         vacancy.published_at = datetime.strptime(vacancy_data['published_at'], '%Y-%m-%dT%H:%M:%S%z')
 
         vacancies_list.append(vacancy)
-        #print(vacancy.title, vacancy.salary)
     print(vacancies_list)
     for i in vacancies_list:
         if Vacancy.objects.filter(
