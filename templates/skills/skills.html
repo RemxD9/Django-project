@@ -9,7 +9,7 @@
     <link href="{% static 'css/skills-styles1.css'%}" rel="stylesheet">
     <link href="{% static 'css/menu_styles1.css' %}" rel="stylesheet">
     <link href="{% static 'css/footer-styles.css'%}" rel="stylesheet">
-    <link href="{% static 'css/table-styles.css'%}" rel="stylesheet">
+    <link href="{% static 'css/table-styles1.css'%}" rel="stylesheet">
     <title>Devops-инженер, навыки</title>
   </head>
   <body class="page">
@@ -42,128 +42,27 @@
     <main class="main-content">
         <h1>ТОП-20 навыков по годам</h1>
       <section class="hero">
-        <h1>2015 год</h1>
+          {% for pop in skills|slice:":9"%}
+        <h1>{{pop.title}}</h1>
           <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2015.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
+              <img src="{{pop.image.url}}" width="840" height="680" alt="">
           </div>
           <div class="table">
-            {% include 'skills/tables/top_20_by_2015.html' %}
+            {{ pop.display_text_file|safe }}
           </div>
-        <h1>2016 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2016.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/top_20_by_2016.html' %}
-          </div>
-        <h1>2017 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2017.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/top_20_by_2017.html' %}
-          </div>
-        <h1>2018 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2018.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/top_20_by_2018.html' %}
-          </div>
-        <h1>2019 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2019.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/top_20_by_2019.html' %}
-          </div>
-        <h1>2020 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2020.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/top_20_by_2020.html' %}
-          </div>
-        <h1>2021 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2021.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/top_20_by_2021.html' %}
-          </div>
-        <h1>2022 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2022.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/top_20_by_2022.html' %}
-          </div>
-        <h1>2023 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_top_20_by_2023.png' %}" width="840" height="680" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/top_20_by_2023.html' %}
-          </div>
+          {% endfor %}
       </section>
         <h1>ТОП-20 навыков по годам для выбранной профессии</h1>
       <section class="prof-skills">
-        <h1>2016 год</h1>
+          {% for pop in skills|slice:"9:"%}
+        <h1>{{pop.title}}</h1>
           <div class="graph">
-              <img src="{% static 'img/skills/graph_prof_top_20_by_2016.png' %}" width="840" height="680" alt="График долей вакансий по городам">
+              <img src="{{pop.image.url}}" width="840" height="680" alt="">
           </div>
           <div class="table">
-            {% include 'skills/tables/prof_top_20_by_2016.html' %}
+            {{ pop.display_text_file|safe }}
           </div>
-          <h1>2017 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_prof_top_20_by_2017.png' %}" width="840" height="680" alt="График долей вакансий по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/prof_top_20_by_2017.html' %}
-          </div>
-          <h1>2018 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_prof_top_20_by_2018.png' %}" width="840" height="680" alt="График долей вакансий по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/prof_top_20_by_2018.html' %}
-          </div>
-          <h1>2019 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_prof_top_20_by_2019.png' %}" width="840" height="680" alt="График долей вакансий по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/prof_top_20_by_2019.html' %}
-          </div>
-          <h1>2020 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_prof_top_20_by_2020.png' %}" width="840" height="680" alt="График долей вакансий по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/prof_top_20_by_2020.html' %}
-          </div>
-          <h1>2021 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_prof_top_20_by_2021.png' %}" width="840" height="680" alt="График долей вакансий по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/prof_top_20_by_2021.html' %}
-          </div>
-          <h1>2022 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_prof_top_20_by_2022.png' %}" width="840" height="680" alt="График долей вакансий по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/prof_top_20_by_2022.html' %}
-          </div>
-          <h1>2023 год</h1>
-          <div class="graph">
-              <img src="{% static 'img/skills/graph_prof_top_20_by_2023.png' %}" width="840" height="680" alt="График долей вакансий по городам">
-          </div>
-          <div class="table">
-            {% include 'skills/tables/prof_top_20_by_2023.html' %}
-          </div>
+          {% endfor %}
       </section>
     </main>
   {% include 'footer.html' %}

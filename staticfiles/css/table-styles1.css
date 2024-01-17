@@ -8,6 +8,25 @@
     border-collapse: collapse;
 }
 
+.dataframe table {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dataframe th, .dataframe td {
+    word-wrap: break-word;
+    max-width: 1%;
+}
+
+.dataframe td {
+    white-space: nowrap;
+}
+
+.dataframe thead th, .dataframe tbody td {
+    padding: 8px; /* или любое другое значение */
+}
+
 .dataframe tbody tr:nth-of-type(odd) {
   background-color: rgba(255, 255, 255, 0.05);
 }

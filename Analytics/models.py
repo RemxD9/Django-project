@@ -50,8 +50,8 @@ class Vacancy(models.Model):
 
 class Popularity(models.Model):
     title = models.CharField(verbose_name='Название', max_length=255, null=True)
-    image = models.ImageField(verbose_name='Изображение', upload_to='staticfiles', null=True)
-    table = models.FileField(verbose_name='Таблица', null=True)
+    image = models.ImageField(verbose_name='Изображение', upload_to='staticfiles/popularity/graphs', null=True)
+    table = models.FileField(verbose_name='Таблица', upload_to='staticfiles/popularity/tables', null=True)
 
     def display_text_file(self):
         with open(self.table.path, 'r', encoding='utf-8') as file:
@@ -66,8 +66,8 @@ class Popularity(models.Model):
 
 class Geography(models.Model):
     title = models.CharField(verbose_name='Название', max_length=255, null=True)
-    image = models.ImageField(verbose_name='Изображение', upload_to='staticfiles', null=True)
-    table = models.FileField(verbose_name='Таблица', null=True)
+    image = models.ImageField(verbose_name='Изображение', upload_to='staticfiles/geography/graphs', null=True)
+    table = models.FileField(verbose_name='Таблица', upload_to='staticfiles/geography/tables', null=True)
 
     def display_text_file(self):
         with open(self.table.path, 'r', encoding='utf-8') as file:
@@ -78,3 +78,19 @@ class Geography(models.Model):
         verbose_name = 'География'
         verbose_name_plural = 'География'
         db_table = 'geography'
+
+
+class Skills(models.Model):
+    title = models.CharField(verbose_name='Название', max_length=255, null=True)
+    image = models.ImageField(verbose_name='Изображение', upload_to='staticfiles/skills/graphs', null=True)
+    table = models.FileField(verbose_name='Таблица', upload_to='staticfiles/skills/tables', null=True)
+
+    def display_text_file(self):
+        with open(self.table.path, 'r', encoding='utf-8') as file:
+            html_content = file.read()
+        return format_html(html_content)
+
+    class Meta:
+        verbose_name = 'Навыки'
+        verbose_name_plural = 'Навыки'
+        db_table = 'Skills'

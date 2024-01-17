@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import requests
 from django.contrib.auth.decorators import login_required
-from .models import Vacancy, Geography, Popularity
+from .models import Vacancy, Geography, Popularity, Skills
 import re
 import json
 from django.shortcuts import render, redirect
@@ -79,7 +79,8 @@ def geography(request):
 
 
 def skills(request):
-    return render(request, 'skills/skills.html')
+    skills = Skills.objects.all()
+    return render(request, 'skills/skills.html',  context={'skills': skills})
 
 
 def last_vacancies(request):
