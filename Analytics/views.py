@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegistrationForm
+from django.contrib.auth.models import Group
 
 
 def logout_view(request):
@@ -23,8 +24,14 @@ def registration_view(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            # Добавляем пользователя в выбранную группу
+            selected_group = form.cleaned_data['group']
+            user.groups.add(selected_group)
             login(request, user)
             return redirect('user_profile')  # Перенаправление на страницу профиля пользователя
+        else:
+            # Передача формы с сообщением об ошибке
+            return render(request, 'registration/register.html', {'form': form, 'error_message': 'Заполните обязательные поля'})
     else:
         form = RegistrationForm()
     return render(request, 'registration/register.html', {'form': form})

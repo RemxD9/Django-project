@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
 
 
@@ -11,6 +11,7 @@ class SiteUser(AbstractUser):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True)
 
     USERNAME_FIELD = 'username'  # Укажите поле, используемое в качестве уникального идентификатора
     REQUIRED_FIELDS = ['email']

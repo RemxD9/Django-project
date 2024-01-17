@@ -24,9 +24,11 @@
           <li class="site-navigation-item">
             <a href="{% url 'Последние вакансии' %}">Последние вакансии</a>
           </li>
+          <li class="site-navigation-item">
+              <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <a href="{% url 'logout' %}">Выход</a>
+            </form>
+          </li>
         </ul>
-        <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
     </nav>
