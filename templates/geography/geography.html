@@ -6,11 +6,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="{% static 'css/geography-styles.css'%}" rel="stylesheet">
+    <link href="{% static 'css/geography-styles1.css' %}" rel="stylesheet">
     <link href="{% static 'css/menu_styles1.css' %}" rel="stylesheet">
-    <link href="{% static 'css/footer-styles.css'%}" rel="stylesheet">
-    <link href="{% static 'css/table-styles.css'%}" rel="stylesheet">
-    <title>Devops-инженер, география</title>
+    <link href="{% static 'css/footer-styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/table-styles1.css'%}" rel="stylesheet">
+    <title>Devops-инженер, География</title>
   </head>
   <body class="page">
     <header class="page-header">
@@ -39,46 +39,21 @@
       </div>
       {% include 'menu.html' %}
     </header>
-    <main class="main-content">
-      <section class="hero">
-        <h1>Уровень зарплат по городам</h1>
-          <div class="graph">
-              <img src="{% static 'img/geography/graph_top_20_cities_by_salary.png' %}" width="640" height="360" alt="График динамики уровня зарплат по городам">
-          </div>
-          <div class="table">
-            {% include 'geography/tables/top_20_cities_by_salary.html' %}
-          </div>
+  <main class="main-content">
+  {% for pop in geography %}
+      <section class="{{pop.title}}">
+      <h1>{{pop.title}}</h1>
+        <div class="graph">
+             <img src="{{pop.image.url}}" width="840" height="460" alt="">
+        </div>
+            <div class="table">
+                {{ pop.display_text_file|safe }}
+            </div>
       </section>
-      <section class="vacancies-count-by-year">
-        <h1>Доля вакансий по городам</h1>
-          <div class="graph">
-              <img src="{% static 'img/geography/graph_top_20_cities_by_rate.png' %}" width="640" height="360" alt="График долей вакансий по городам">
-          </div>
-          <div class="table">
-            {% include 'geography/tables/top_20_cities_by_rate.html' %}
-          </div>
-      </section>
-        <section class="profession-salary-by-year">
-        <h1>Уровень зарплат по городам для выбранной профессии</h1>
-          <div class="graph">
-              <img src="{% static 'img/geography/prof_graph_top_20_cities_by_salary.png' %}" width="640" height="360" alt="График динамики зарплат по горлдам для выбранной профессии">
-          </div>
-          <div class="table">
-            {% include 'geography/tables/prof_top_20_cities_by_salary.html' %}
-          </div>
-      </section>
-        <section class="profession-count-vacancies-by-year">
-        <h1>Доля вакансий по городам для выбранной профессии</h1>
-          <div class="graph">
-              <img src="{% static 'img/geography/prof_graph_top_20_cities_by_rate.png' %}" width="640" height="360" alt="График доли вакансий по городам для выбранной профессии">
-          </div>
-          <div class="table">
-            {% include 'geography/tables/prof_top_20_cities_by_rate.html' %}
-          </div>
-      </section>
-    </main>
-  {% include 'footer.html' %}
-  <script src="{% static 'scripts/fonts.js'%}"></script>
-  <script src="{% static 'scripts/themes.js'%}"></script>
+      {% endfor %}
+  </main>
+      {% include 'footer.html' %}
+    <script src="{% static 'scripts/fonts.js' %}"></script>
+<script src="{% static 'scripts/themes.js' %}"></script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
+import pandas as pd
+from django.utils.html import format_html
 
 
 class SiteUser(AbstractUser):
@@ -44,3 +46,35 @@ class Vacancy(models.Model):
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
         db_table = 'vacancies'
+
+
+class Popularity(models.Model):
+    title = models.CharField(verbose_name='Название', max_length=255, null=True)
+    image = models.ImageField(verbose_name='Изображение', upload_to='staticfiles', null=True)
+    table = models.FileField(verbose_name='Таблица', null=True)
+
+    def display_text_file(self):
+        with open(self.table.path, 'r', encoding='utf-8') as file:
+            html_content = file.read()
+        return format_html(html_content)
+
+    class Meta:
+        verbose_name = 'Востребованность'
+        verbose_name_plural = 'Востребованности'
+        db_table = 'popularity'
+
+
+class Geography(models.Model):
+    title = models.CharField(verbose_name='Название', max_length=255, null=True)
+    image = models.ImageField(verbose_name='Изображение', upload_to='staticfiles', null=True)
+    table = models.FileField(verbose_name='Таблица', null=True)
+
+    def display_text_file(self):
+        with open(self.table.path, 'r', encoding='utf-8') as file:
+            html_content = file.read()
+        return format_html(html_content)
+
+    class Meta:
+        verbose_name = 'География'
+        verbose_name_plural = 'География'
+        db_table = 'geography'

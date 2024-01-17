@@ -6,10 +6,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="{% static 'css/popularity-styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/popularity-styles1.css' %}" rel="stylesheet">
     <link href="{% static 'css/menu_styles1.css' %}" rel="stylesheet">
     <link href="{% static 'css/footer-styles.css' %}" rel="stylesheet">
-    <link href="{% static 'css/table-styles.css'%}" rel="stylesheet">
+    <link href="{% static 'css/table-styles1.css'%}" rel="stylesheet">
     <title>Devops-инженер, востребованность</title>
   </head>
   <body class="page">
@@ -39,46 +39,21 @@
       </div>
       {% include 'menu.html' %}
     </header>
-    <main class="main-content">
-      <section class="hero">
-        <h1>Динамика уровня зарплат по годам</h1>
-          <div class="graph">
-              <img src="{% static 'img/popularity/salary-dynamic-by-year.png' %}" width="840" height="460" alt="График динамики уровня зарплат">
-          </div>
-          <div class="table">
-            {% include 'popularity/tables/salary-dynamic-by-year.html' %}
-          </div>
+  <main class="main-content">
+  {% for pop in popularities %}
+      <section class="{{pop.title}}">
+      <h1>{{pop.title}}</h1>
+        <div class="graph">
+             <img src="{{pop.image.url}}" width="840" height="460" alt="">
+        </div>
+            <div class="table">
+                {{ pop.display_text_file|safe }}
+            </div>
       </section>
-      <section class="vacancies-count-by-year">
-        <h1>Динамика количества вакансий по годам</h1>
-          <div class="graph">
-              <img src="{% static 'img/popularity/count-dynamic-by-year.png' %}" width="840" height="460" alt="График кол-ва вакансий по годам">
-          </div>
-          <div class="table">
-            {% include 'popularity/tables/count-dynamic-by-year.html' %}
-          </div>
-      </section>
-        <section class="profession-salary-by-year">
-        <h1>Динамика уровня зарплат по годам для выбранной профессии</h1>
-          <div class="graph">
-              <img src="{% static 'img/popularity/profession-salary-dynamic-by-year.png' %}" width="840" height="460" alt="График динамики зарплат по годам">
-          </div>
-          <div class="table">
-            {% include 'popularity/tables/profession-salary-dynamic-by-year.html' %}
-          </div>
-      </section>
-        <section class="profession-count-vacancies-by-year">
-        <h1>Динамика количества вакансий по годам для выбранной профессии</h1>
-          <div class="graph">
-              <img src="{% static 'img/popularity/profession-count-dynamic-by-year.png' %}" width="840" height="460" alt="График динамики кол-ва вакансий по профессии по годам">
-          </div>
-          <div class="table">
-            {% include 'popularity/tables/profession-count-dynamic-by-year.html' %}
-          </div>
-      </section>
-    </main>
-  {% include 'footer.html' %}
-  <script src="{% static 'scripts/fonts.js' %}"></script>
-  <script src="{% static 'scripts/themes.js' %}"></script>
+      {% endfor %}
+  </main>
+      {% include 'footer.html' %}
+    <script src="{% static 'scripts/fonts.js' %}"></script>
+<script src="{% static 'scripts/themes.js' %}"></script>
 </body>
 </html>

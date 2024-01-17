@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import requests
 from django.contrib.auth.decorators import login_required
-from .models import Vacancy
+from .models import Vacancy, Geography, Popularity
 import re
 import json
 from django.shortcuts import render, redirect
@@ -9,6 +9,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegistrationForm
 from django.contrib.auth.models import Group
+
 
 
 def logout_view(request):
@@ -38,15 +39,24 @@ def registration_view(request):
 
 
 def login_view(request):
+    error_message = None  # Инициализируем переменную ошибки
+
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('user_profile')  # Перенаправление на страницу профиля пользователя
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('user_profile')
+            else:
+                error_message = 'Пользователя с такими данными не существует.'
     else:
         form = AuthenticationForm()
-    return render(request, 'registration/login.html', {'form': form})
+
+    # Передаем переменную ошибки в контекст шаблона
+    return render(request, 'registration/login1.html', {'form': form, 'error_message': error_message})
 
 
 @login_required
@@ -59,11 +69,13 @@ def main_page(request):
 
 
 def popularity(request):
-    return render(request, 'popularity/popularity.html')
+    popularities = Popularity.objects.all()
+    return render(request, 'popularity/popularity.html', context={'popularities': popularities})
 
 
 def geography(request):
-    return render(request, 'geography/geography.html')
+    geographies = Geography.objects.all()
+    return render(request, 'geography/geography.html', context={'geography': geographies})
 
 
 def skills(request):

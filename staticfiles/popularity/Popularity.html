@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+  <head>
+      <style>
+            .dataframe {
+                display: inline-block;
+                width: 1200px;
+                justify-content: center;
+                margin-left: 130px;
+                margin-top: 25px;
+            }
+            .dataframe {
+                display: block;
+                width: 1000px;
+                background-color: black;
+                margin: 0 auto;
+                justify-content: center;
+            }
+        </style>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'css/popularity-styles1.css' %}">
+       <link rel="stylesheet" href="{% static 'css/menu_styles1.css' %}">
+       <link rel="stylesheet" href="{% static 'css/footer-styles.css' %}">
+      <title>Специалист по ИБ</title>
+  </head>
+  <body class="page">
+  {% include 'menu.html' %}
+  <main class="main-content">
+  {% for pop in popularities %}
+      <section class="{{pop.title}}">
+      <h2 class="demand-header">{{pop.title}}</h2>
+        <div class="graph">
+             <img src="{{pop.image.url}}" width="840" height="660" alt="">
+        </div>
+        <div class="table">
+              {{pop.display_text_file | safe}}
+        </div>
+      </section>
+      {% endfor %}
+  </main>
+      {% include 'footer.html' %}
+    <script src="{% static 'scripts/fonts.js' %}"></script>
+<script src="{% static 'scripts/themes.js' %}"></script>
+</body>
+</html>

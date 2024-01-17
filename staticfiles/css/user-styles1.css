@@ -1,0 +1,99 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+html {
+    background: url('../img/background.jpg') no-repeat;
+    background-size: cover;
+    object-fit: fill;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: darkseagreen;
+}
+
+body > article {
+    width: 400px;
+    border-radius: 25px;
+    display: flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: linear-gradient(#141e30, #243b55);
+    margin: 0;
+    margin-bottom: 90px;
+}
+
+body > article > h1 {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: linear-gradient(#141e30, #243b55);
+    margin: 0 auto;
+}
+
+div {
+    background: linear-gradient(#141e30, #243b55);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    margin: 0 auto;
+}
+
+div > h1 {
+    margin: 50px auto;
+}
+
+div > p {
+    padding: 0;
+    margin: 10px 20px;
+}
+
+article {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div, article {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    background-color: darkseagreen;
+    font-size: 18px;
+    color: #dadada;
+    border: 0;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 10px;
+}
+
+button:not(.active):hover,
+button:not(.active):focus {
+  transition: color 200ms linear, text-shadow 500ms linear;
+  color: #004d40;
+  text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #00695c;
+}
+button:not(:hover) {
+    transition: 0.6s;
+}
+
+button:active {
+    opacity: 0.7;
+}
