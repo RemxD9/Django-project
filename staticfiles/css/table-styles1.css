@@ -1,55 +1,66 @@
+/* Стили для таблицы и ее контейнера */
 .dataframe {
-    width: 100%;
-    max-width: 840px; /* по ширине контейнера */
-    color: #fff;
-    text-align: center;
-    background-color: #343a40;
-    border: 0;
-    border-collapse: collapse;
+    width: 100%;  /* Ширина таблицы на 100% от родительского контейнера */
+    max-width: 840px;  /* Максимальная ширина таблицы (по ширине контейнера) */
+    color: #fff;  /* Цвет текста в таблице */
+    text-align: center;  /* Выравнивание текста по центру */
+    background-color: #343a40;  /* Цвет фона таблицы */
+    border: 0;  /* Убирает границы таблицы */
+    border-collapse: collapse;  /* Схлопывание границ таблицы */
 }
 
+/* Стили для таблицы внутри контейнера */
 .dataframe table {
-    table-layout: auto;
-    width: 100%;
-    border-collapse: collapse;
+    table-layout: auto;  /* Автоматическое распределение ширины ячеек */
+    width: 100%;  /* Ширина таблицы на 100% от родительского контейнера */
+    border-collapse: collapse;  /* Схлопывание границ таблицы */
 }
 
+/* Стили для заголовков и ячеек таблицы */
 .dataframe th, .dataframe td {
-    word-wrap: break-word;
-    max-width: 1%;
+    word-wrap: break-word;  /* Разбивка слов, которые не помещаются в ячейку */
+    max-width: 1%;  /* Максимальная ширина ячеек (предотвращает растягивание) */
 }
 
+/* Стили для содержимого ячеек таблицы */
 .dataframe td {
-    white-space: nowrap;
+    white-space: nowrap;  /* Запрет переноса строк в ячейках */
 }
 
+/* Стили для отступов в заголовках и ячейках таблицы */
 .dataframe thead th, .dataframe tbody td {
-    padding: 8px; /* или любое другое значение */
+    padding: 8px;  /* Значение внутреннего отступа */
 }
 
+/* Стили для четных строк таблицы */
 .dataframe tbody tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);  /* Цвет фона четных строк */
 }
 
-.dataframe td:hover{
-    background-color: #5a5a5f;
+/* Стили при наведении на ячейку таблицы */
+.dataframe td:hover {
+    background-color: #5a5a5f;  /* Цвет фона при наведении */
 }
 
-.dataframe td:active{
-    background-color: #ffffff;
-    color: #3bc1a0;
+/* Стили при активации ячейки таблицы (нажатие) */
+.dataframe td:active {
+    background-color: #ffffff;  /* Цвет фона при активации */
+    color: #3bc1a0;  /* Цвет текста при активации */
 }
 
+/* Стили для заголовков таблицы */
 .dataframe thead th {
-    color: #fff;
-    background-color: #343a40;
-    border: none;
+    color: #fff;  /* Цвет текста в заголовках */
+    background-color: #343a40;  /* Цвет фона заголовков */
+    border: none;  /* Убирает границы для заголовков */
 }
 
+/* Стили для границ ячеек таблицы */
 .dataframe td {
-    border: none;
+    border: none;  /* Убирает границы для ячеек */
 }
 
+/* Стили для выравнивания текста в центре для строк с атрибутом style */
 tr[style] {
-    text-align: center !important;
+    text-align: center !important;  /* Изменение выравнивания текста в центр для строк с атрибутом style */
 }

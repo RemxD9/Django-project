@@ -1,46 +1,52 @@
 from datetime import datetime, timedelta
 import requests
 from django.contrib.auth.decorators import login_required
-from .models import Vacancy, Geography, Popularity, Skills
+from .models import Vacancy, Geography, Popularity, Skills, ProfSkills
 import re
 import json
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegistrationForm
-from django.contrib.auth.models import Group
 
 
-
+# Функция для выхода пользователя из системы
 def logout_view(request):
     logout(request)
     return redirect('login_view')
 
 
+# Функция для обработки регистрации нового пользователя
 def registration_view(request):
+    # Проверка, аутентифицирован ли уже пользователь
     if request.user.is_authenticated:
         return redirect('user_profile')
 
+    # Обработка POST-запроса при отправке формы регистрации
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            # Сохранение пользователя и добавление в выбранную группу
             user = form.save()
-            # Добавляем пользователя в выбранную группу
             selected_group = form.cleaned_data['group']
             user.groups.add(selected_group)
             login(request, user)
-            return redirect('user_profile')  # Перенаправление на страницу профиля пользователя
+            return redirect('user_profile')
         else:
-            # Передача формы с сообщением об ошибке
+            # Отображение формы с сообщением об ошибке
             return render(request, 'registration/register.html', {'form': form, 'error_message': 'Заполните обязательные поля'})
     else:
         form = RegistrationForm()
+
+    # Отображение формы регистрации
     return render(request, 'registration/register.html', {'form': form})
 
 
+# Функция для обработки входа пользователя
 def login_view(request):
-    error_message = None  # Инициализируем переменную ошибки
+    error_message = None  # Инициализация переменной ошибки
 
+    # Обработка POST-запроса при отправке формы входа
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -55,34 +61,41 @@ def login_view(request):
     else:
         form = AuthenticationForm()
 
-    # Передаем переменную ошибки в контекст шаблона
+    # Отображение формы входа с сообщением об ошибке
     return render(request, 'registration/login1.html', {'form': form, 'error_message': error_message})
 
 
+# Функция для отображения профиля пользователя (требует аутентификации)
 @login_required
 def user_profile(request):
     return render(request, 'registration/user_profile.html')
 
 
+# Функция для отображения главной страницы
 def main_page(request):
     return render(request, 'main-page.html')
 
 
+# Функция для отображения страницы с данными о востребованности
 def popularity(request):
     popularities = Popularity.objects.all()
     return render(request, 'popularity/popularity.html', context={'popularities': popularities})
 
 
+# Функция для отображения страницы с данными о географии
 def geography(request):
     geographies = Geography.objects.all()
     return render(request, 'geography/geography.html', context={'geography': geographies})
 
 
+# Функция для отображения страницы с данными о навыках и профессиональных навыках
 def skills(request):
     skills = Skills.objects.all()
-    return render(request, 'skills/skills.html',  context={'skills': skills})
+    profskills = ProfSkills.objects.all()
+    return render(request, 'skills/skills.html',  context={'skills': skills, 'profskills': profskills})
 
 
+# Функция для обработки и отображения списка последних вакансий
 def last_vacancies(request):
     Vacancy.objects.all().delete()
     # API HH URL
@@ -100,7 +113,7 @@ def last_vacancies(request):
     # Опции запроса
     params = {
         'text': profession,
-        'date_from': date_from.strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'date_from': date_from.strftime('%Y-%m-%dT%H:%M:%S%z'),
         'per_page': 10,
         'order_by': 'publication_time'
     }
@@ -137,7 +150,6 @@ def last_vacancies(request):
         vacancy.published_at = datetime.strptime(vacancy_data['published_at'], '%Y-%m-%dT%H:%M:%S%z')
 
         vacancies_list.append(vacancy)
-    print(vacancies_list)
     for i in vacancies_list:
         if Vacancy.objects.filter(
                 title=i.title,
@@ -156,6 +168,7 @@ def last_vacancies(request):
     return render(request, 'last_vacancies/last-vacancies.html', {'last_vacancies': last_vacancies})
 
 
+# Функция для получения описания вакансии по URL
 def get_vacancy_description(vacancy_url):
     # Отправка GET-запроса к API HH для получения данных о вакансии
     response = requests.get(vacancy_url)
@@ -164,6 +177,7 @@ def get_vacancy_description(vacancy_url):
     return re.sub(r'<[^>]+>', '', vacancy_data['description']).replace('&quot;', '.')
 
 
+# Функция для получения ключевых навыков вакансии по URL
 def get_vacancy_skills(vacancy_url):
     # Отправка GET-запроса к API HH для получения данных о вакансии
     response = requests.get(vacancy_url)

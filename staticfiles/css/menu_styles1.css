@@ -1,74 +1,83 @@
+/* Стили для боковой навигационной панели */
 .nav {
-    width: 320px;
-    min-width: 320px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    margin: 0;
-    left: -320px;
-    padding: 15px 20px;
-    -webkit-transition: left 0.3s;
+    width: 320px; /* Ширина панели */
+    min-width: 320px; /* Минимальная ширина панели */
+    height: 100%; /* Занимает 100% высоты экрана */
+    position: fixed; /* Фиксирует панель при прокрутке страницы */
+    top: 0; /* Позиция от верха экрана */
+    bottom: 0; /* Позиция от низа экрана */
+    margin: 0; /* Обнуление внешних отступов */
+    left: -320px; /* Смещение влево за пределы видимой области */
+    padding: 15px 20px; /* Внутренний отступ для контента */
+    -webkit-transition: left 0.3s; /* Анимация смещения влево */
     -moz-transition: left 0.3s;
     transition: left 0.3s;
-    background: #16a085;
-    z-index: 2000;
+    background: #16a085; /* Цвет фона панели */
+    z-index: 2000; /* Задает порядок слоя (должна быть выше других элементов) */
 }
 
+/* Кнопка переключения бокового меню */
 .nav-toggle {
-    position: absolute;
-    left: 320px;
-    top: 1em;
-    padding: 0.5em;
-    background: inherit;
-    color: #dadada;
-    cursor: pointer;
-    font-size: 1.2em;
-    line-height: 1;
-    z-index: 2001;
-    -webkit-transition: color .25s ease-in-out;
+    position: absolute; /* Позиционирование абсолютно внутри родительского элемента */
+    left: 320px; /* Позиция кнопки слева */
+    top: 1em; /* Позиция кнопки сверху */
+    padding: 0.5em; /* Внутренний отступ для кнопки */
+    background: inherit; /* Наследует цвет фона */
+    color: #dadada; /* Цвет текста */
+    cursor: pointer; /* Изменение курсора при наведении */
+    font-size: 1.2em; /* Размер шрифта */
+    line-height: 1; /* Высота строки */
+    z-index: 2001; /* Задает порядок слоя для кнопки (выше чем .nav) */
+    -webkit-transition: color .25s ease-in-out; /* Анимация цвета текста */
     -moz-transition: color .25s ease-in-out;
     transition: color .25s ease-in-out;
 }
 
+/* Иконка для кнопки переключения бокового меню */
 .nav-toggle:after {
-    content: '\2630';
-    text-decoration: none;
+    content: '\2630'; /* Код символа (гамбургер) */
+    text-decoration: none; /* Убирает подчеркивание у текста */
 }
 
+/* При наведении на кнопку меню */
 .nav-toggle:hover {
-    color: #f4f4f4;
+    color: #f4f4f4; /* Изменение цвета текста при наведении */
 }
 
+/* Стили для чекбокса переключения бокового меню */
 [id='nav-toggle'] {
-    position: absolute;
-    display: none;
+    position: absolute; /* Позиционирование абсолютно внутри родительского элемента */
+    display: none; /* Изначально скрывает чекбокс */
 }
 
+/* При активации чекбокса, изменения в стилях для кнопки и бокового меню */
 [id='nav-toggle']:checked ~ .nav > .nav-toggle {
-    left: auto;
+    left: auto; /* Изменение позиции кнопки при активации чекбокса */
     right: 2px;
     top: 1em;
 }
 
 [id='nav-toggle']:checked ~ .nav {
-    left: 0;
-    box-shadow:4px 0px 20px 0px rgba(0,0,0, 0.5);
+    left: 0; /* Отображение бокового меню при активации чекбокса */
+    box-shadow:4px 0px 20px 0px rgba(0,0,0, 0.5); /* Тень для бокового меню */
     -moz-box-shadow:4px 0px 20px 0px rgba(0,0,0, 0.5);
     -webkit-box-shadow:4px 0px 20px 0px rgba(0,0,0, 0.5);
-    overflow-y: auto;
+    overflow-y: auto; /* Переполнение контента с прокруткой по Y-оси */
 }
 
+/* При активации чекбокса, смещение основного контента вправо */
 [id='nav-toggle']:checked ~ main > article {
     -webkit-transform: translateX(320px);
     -moz-transform: translateX(320px);
     transform: translateX(320px);
 }
 
+/* При активации чекбокса, изменение иконки кнопки на крестик */
 [id='nav-toggle']:checked ~ .nav > .nav-toggle:after {
-    content: '\2715';
+    content: '\2715'; /* Крестик вместо гамбургера */
 }
 
+/* Анимация для исправления бага в WebKit */
 body {
     -webkit-animation: bugfix infinite 1s;
 }
@@ -79,240 +88,242 @@ body {
     }
 }
 
+/* Медиа-запросы для разных размеров экрана */
 @media screen and (min-width: 320px) {
     html,
     body {
-      margin: 0;
-      overflow-x: hidden;
+      margin: 0; /* Убирает внешние отступы у html и body */
+      overflow-x: hidden; /* Убирает горизонтальную прокрутку */
     }
 }
 
 @media screen and (max-width: 320px) {
     html,
     body {
-      margin: 0;
-      overflow-x: hidden;
+      margin: 0; /* Убирает внешние отступы у html и body */
+      overflow-x: hidden; /* Убирает горизонтальную прокрутку */
     }
     .nav {
-      width: 100%;
-      box-shadow: none
+      width: 100%; /* При узком экране, ширина меню 100% */
+      box-shadow: none; /* Убирает тень у бокового меню */
     }
 }
 
+/* Стили для заголовка в боковом меню */
 .nav h2 {
-    width: 90%;
+    width: 90%; /* Ширина заголовка */
     padding: 0;
-    margin: 10px 0;
-    text-align: center;
-    text-shadow: rgba(255, 255, 255, .1) -1px -1px 1px, rgba(0, 0, 0, .5) 1px 1px 1px;
-    font-size: 1.3em;
-    line-height: 1.3em;
-    opacity: 0;
-    transform: scale(0.1, 0.1);
+    margin: 10px 0; /* Внешний отступ сверху и снизу */
+    text-align: center; /* Выравнивание текста по центру */
+    text-shadow: rgba(255, 255, 255, .1) -1px -1px 1px, rgba(0, 0, 0, .5) 1px 1px 1px; /* Тень текста */
+    font-size: 1.3em; /* Размер шрифта */
+    line-height: 1.3em; /* Высота строки */
+    opacity: 0; /* Изначально невидимый */
+    transform: scale(0.1, 0.1); /* Изначальный масштаб */
     -ms-transform: scale(0.1, 0.1);
     -moz-transform: scale(0.1, 0.1);
     -webkit-transform: scale(0.1, 0.1);
-    transform-origin: 0% 0%;
+    transform-origin: 0% 0%; /* Ось масштабирования */
     -ms-transform-origin: 0% 0%;
     -moz-transform-origin: 0% 0%;
     -webkit-transform-origin: 0% 0%;
-    transition: opacity 0.8s, transform 0.8s;
+    transition: opacity 0.8s, transform 0.8s; /* Анимация появления заголовка */
     -ms-transition: opacity 0.8s, -ms-transform 0.8s;
     -moz-transition: opacity 0.8s, -moz-transform 0.8s;
     -webkit-transition: opacity 0.8s, -webkit-transform 0.8s;
 }
 
+/* Стили для ссылок в заголовке бокового меню */
 .nav h2 a {
-    color: #dadada;
-    text-decoration: none;
-    text-transform: uppercase;
+    color: #dadada; /* Цвет текста */
+    text-decoration: none; /* Отсутствие подчеркивания у ссылок */
 }
 
-
+/* При активации чекбокса, появление заголовка */
 [id='nav-toggle']:checked ~ .nav h2 {
-    opacity: 1;
-    transform: scale(1, 1);
+    opacity: 1; /* Сделать заголовок видимым */
+    transform: scale(1, 1); /* Увеличить масштаб заголовка */
     -ms-transform: scale(1, 1);
     -moz-transform: scale(1, 1);
     -webkit-transform: scale(1, 1);
 }
 
-
+/* Стили для списка в боковом меню */
 .nav > ul {
-    display: block;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    display: block; /* Отображение в виде блока */
+    margin: 0; /* Убирает внешние отступы */
+    padding: 0; /* Убирает внутренние отступы */
+    list-style: none; /* Убирает стилизацию маркера списка */
 }
 
+
+/* Стили для элементов списка в боковом меню */
 .nav > ul > li {
-    line-height: 2.5;
-    opacity: 0;
-    -webkit-transform: translateX(-50%);
+    line-height: 2.5; /* Высота строки */
+    opacity: 0; /* Изначально невидимый */
+    -webkit-transform: translateX(-50%); /* Смещение по горизонтали на 50% от ширины элемента */
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    -webkit-transition: opacity .5s .1s, -webkit-transform .5s .1s;
+    -webkit-transition: opacity .5s .1s, -webkit-transform .5s .1s; /* Анимация появления элемента */
     -moz-transition: opacity .5s .1s, -moz-transform .5s .1s;
     -ms-transition: opacity .5s .1s, -ms-transform .5s .1s;
     transition: opacity .5s .1s, transform .5s .1s;
 }
 
+/* При активации чекбокса, появление элементов списка */
 [id='nav-toggle']:checked ~ .nav > ul > li {
-    opacity: 1;
-    -webkit-transform: translateX(0);
+    opacity: 1; /* Сделать элемент видимым */
+    -webkit-transform: translateX(0); /* Сброс смещения по горизонтали */
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
     transform: translateX(0);
 }
 
-.nav > ul > li:nth-child(2) {
-    -webkit-transition: opacity .5s .2s, -webkit-transform .5s .2s;
+/* Анимация для каждого элемента списка с задержкой */
+.nav > ul > li:nth-child(2),
+.nav > ul > li:nth-child(3),
+.nav > ul > li:nth-child(4),
+.nav > ul > li:nth-child(5),
+.nav > ul > li:nth-child(6),
+.nav > ul > li:nth-child(7) {
+    -webkit-transition: opacity .5s .2s, -webkit-transform .5s .2s; /* Анимация с задержкой */
     transition: opacity .5s .2s, transform .5s .2s;
 }
 
-.nav > ul > li:nth-child(3) {
-    -webkit-transition: opacity .5s .3s, -webkit-transform .5s .3s;
-    transition: opacity .5s .3s, transform .5s .3s;
-}
-
-.nav > ul > li:nth-child(4) {
-    -webkit-transition: opacity .5s .4s, -webkit-transform .5s .4s;
-    transition: opacity .5s .4s, transform .5s .4s;
-}
-
-.nav > ul > li:nth-child(5) {
-    -webkit-transition: opacity .5s .5s, -webkit-transform .5s .5s;
-    transition: opacity .5s .5s, transform .5s .5s;
-}
-
-.nav > ul > li:nth-child(6) {
-    -webkit-transition: opacity .5s .6s, -webkit-transform .5s .6s;
-    transition: opacity .5s .6s, transform .5s .6s;
-}
-
-.nav > ul > li:nth-child(7) {
-    -webkit-transition: opacity .5s .7s, -webkit-transform .5s .7s;
-    transition: opacity .5s .7s, transform .5s .7s;
-}
-
+/* Стили для ссылок в элементах списка */
 .nav > ul > li > a {
-    display: inline-block;
-    position: relative;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    font-size: 1.2em;
-    color: #dadada;
-    width: 100%;
-    text-decoration: none;
-    -webkit-transition: color .5s ease, padding .5s ease;
+    display: inline-block; /* Отображение в виде блока внутри строки */
+    position: relative; /* Позиционирование относительно родителя */
+    padding: 0; /* Обнуление внутренних отступов */
+    font-family: 'Open Sans', sans-serif; /* Шрифт */
+    font-weight: 300; /* Толщина шрифта */
+    font-size: 1.2em; /* Размер шрифта */
+    color: #dadada; /* Цвет текста */
+    width: 100%; /* Ширина 100% */
+    text-decoration: none; /* Отсутствие подчеркивания у ссылок */
+    -webkit-transition: color .5s ease, padding .5s ease; /* Анимация изменения цвета и внутренних отступов */
     -moz-transition: color .5s ease, padding .5s ease;
     transition: color .5s ease, padding .5s ease;
 }
 
+/* При наведении на ссылку, изменение цвета и внутренних отступов */
 .nav > ul > li > a:hover,
 .nav > ul > li > a:focus {
     color: white;
     padding-left: 15px;
 }
 
+/* Декоративная линия перед ссылкой */
 .nav > ul > li > a:before {
-    content: '';
-    display: block;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    width: 100%;
-    -webkit-transition: width 0s ease;
+    content: ''; /* Пустой контент */
+    display: block; /* Отображение в виде блока */
+    position: absolute; /* Абсолютное позиционирование */
+    right: 0; /* Справа от ссылки */
+    bottom: 0; /* Внизу от ссылки */
+    height: 1px; /* Высота линии */
+    width: 100%; /* Ширина 100% */
+    -webkit-transition: width 0s ease; /* Анимация изменения ширины */
     transition: width 0s ease;
 }
 
+/* Стили для линии после ссылки в боковой панели */
 .nav > ul > li > a:after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 1px;
-    width: 100%;
-    background: #3bc1a0;
-    -webkit-transition: width .5s ease;
+    content: '';  /* Пустой контент для создания псевдоэлемента */
+    display: block;  /* Блочный элемент */
+    position: absolute;  /* Абсолютное позиционирование относительно родительского элемента */
+    left: 0;  /* Расположение слева от родительского элемента */
+    bottom: 0;  /* Расположение внизу от родительского элемента */
+    height: 1px;  /* Толщина линии */
+    width: 100%;  /* Ширина линии на 100% от родительского элемента */
+    background: #3bc1a0;  /* Цвет линии */
+    -webkit-transition: width .5s ease;  /* Анимация изменения ширины с плавным эффектом */
     transition: width .5s ease;
 }
 
+/* Стили при наведении на ссылку в боковой панели */
 .nav > ul > li > a:hover:before {
-    width: 0%;
-    background: #3bc1a0;
-    -webkit-transition: width .5s ease;
+    width: 0%;  /* Устанавливает начальную ширину линии на 0% (скрытой) */
+    background: #3bc1a0;  /* Цвет линии при наведении */
+    -webkit-transition: width .5s ease;  /* Анимация изменения ширины с плавным эффектом */
     transition: width .5s ease;
 }
 
+/* Стили при наведении на ссылку в боковой панели */
 .nav > ul > li > a:hover:after {
-    width: 0%;
-    background: transparent;
-    -webkit-transition: width 0s ease;
+    width: 0%;  /* Устанавливает начальную ширину линии на 0% (скрытой) */
+    background: transparent;  /* Прозрачность линии при наведении */
+    -webkit-transition: width 0s ease;  /* Анимация изменения ширины с плавным эффектом (нет анимации) */
     transition: width 0s ease;
 }
 
+/* Стили для ссылки в боковой панели внутри формы */
 .nav > ul > li > form > a {
-    display: inline-block;
-    position: relative;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    font-size: 1.2em;
-    color: #dadada;
-    width: 100%;
-    text-decoration: none;
-    -webkit-transition: color .5s ease, padding .5s ease;
+    display: inline-block;  /* Отображение как блочный элемент внутри строчного элемента */
+    position: relative;  /* Относительное позиционирование */
+    padding: 0;  /* Убирает внутренний отступ */
+    font-family: 'Open Sans', sans-serif;  /* Шрифт для текста */
+    font-weight: 300;  /* Толщина шрифта */
+    font-size: 1.2em;  /* Размер шрифта */
+    color: #dadada;  /* Цвет текста */
+    width: 100%;  /* Ширина на 100% от родительского элемента */
+    text-decoration: none;  /* Отсутствие подчеркивания текста */
+    -webkit-transition: color .5s ease, padding .5s ease;  /* Анимация изменения цвета и отступа с плавным эффектом */
     -moz-transition: color .5s ease, padding .5s ease;
     transition: color .5s ease, padding .5s ease;
 }
 
+/* Стили при наведении на ссылку внутри формы в боковой панели */
 .nav > ul > li > form > a:hover,
 .nav > ul > li > form > a:focus {
-    color: white;
-    padding-left: 15px;
+    color: white;  /* Изменение цвета текста при наведении */
+    padding-left: 15px;  /* Добавление внутреннего отступа слева при наведении */
 }
 
+/* Стили для линии перед ссылкой внутри формы в боковой панели */
 .nav > ul > li > form > a:before {
-    content: '';
-    display: block;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    width: 100%;
-    -webkit-transition: width 0s ease;
+    content: '';  /* Пустой контент для создания псевдоэлемента */
+    display: block;  /* Блочный элемент */
+    position: absolute;  /* Абсолютное позиционирование относительно родительского элемента */
+    right: 0;  /* Расположение справа от родительского элемента */
+    bottom: 0;  /* Расположение внизу от родительского элемента */
+    height: 1px;  /* Толщина линии */
+    width: 100%;  /* Ширина линии на 100% от родительского элемента */
+    -webkit-transition: width 0s ease;  /* Анимация изменения ширины с плавным эффектом (нет анимации) */
     transition: width 0s ease;
 }
 
+/* Стили для линии после ссылки внутри формы в боковой панели */
 .nav > ul > li > form > a:after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 1px;
-    width: 100%;
-    background: #3bc1a0;
-    -webkit-transition: width .5s ease;
+    content: '';  /* Пустой контент для создания псевдоэлемента */
+    display: block;  /* Блочный элемент */
+    position: absolute;  /* Абсолютное позиционирование относительно родительского элемента */
+    left: 0;  /* Расположение слева от родительского элемента */
+    bottom: 0;  /* Расположение внизу от родительского элемента */
+    height: 1px;  /* Толщина линии */
+    width: 100%;  /* Ширина линии на 100% от родительского элемента */
+    background: #3bc1a0;  /* Цвет линии */
+    -webkit-transition: width .5s ease;  /* Анимация изменения ширины с плавным эффектом */
     transition: width .5s ease;
 }
 
+/* Стили при наведении на линию перед ссылкой внутри формы в боковой панели */
 .nav > ul > li > form > a:hover:before {
-    width: 0%;
-    background: #3bc1a0;
-    -webkit-transition: width .5s ease;
+    width: 0%;  /* Устанавливает начальную ширину линии на 0% (скрытой) */
+    background: #3bc1a0;  /* Цвет линии при наведении */
+    -webkit-transition: width .5s ease;  /* Анимация изменения ширины с плавным эффектом */
     transition: width .5s ease;
 }
 
+/* Стили при наведении на линию после ссылки внутри формы в боковой панели */
 .nav > ul > li > form > a:hover:after {
-    width: 0%;
-    background: transparent;
-    -webkit-transition: width 0s ease;
+    width: 0%;  /* Устанавливает начальную ширину линии на 0% (скрытой) */
+    background: transparent;  /* Прозрачность линии при наведении */
+    -webkit-transition: width 0s ease;  /* Анимация изменения ширины с плавным эффектом (нет анимации) */
     transition: width 0s ease;
 }
 
+/* Стили для логотипа */
+.logo {
+    background-blend-mode: multiply;  /* Режим смешивания цветов для логотипа */
+}

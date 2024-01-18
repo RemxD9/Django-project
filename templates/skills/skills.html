@@ -42,7 +42,7 @@
     <main class="main-content">
         <h1>ТОП-20 навыков по годам</h1>
       <section class="hero">
-          {% for pop in skills|slice:":9"%}
+          {% for pop in skills %}
         <h1>{{pop.title}}</h1>
           <div class="graph">
               <img src="{{pop.image.url}}" width="840" height="680" alt="">
@@ -54,13 +54,13 @@
       </section>
         <h1>ТОП-20 навыков по годам для выбранной профессии</h1>
       <section class="prof-skills">
-          {% for pop in skills|slice:"9:"%}
-        <h1>{{pop.title}}</h1>
+          {% for pop1 in profskills %}
+        <h1>{{pop1.title}}</h1>
           <div class="graph">
-              <img src="{{pop.image.url}}" width="840" height="680" alt="">
+              <img src="{{pop1.image.url}}" width="840" height="680" alt="">
           </div>
           <div class="table">
-            {{ pop.display_text_file|safe }}
+            {{ pop1.display_text_file|safe }}
           </div>
           {% endfor %}
       </section>
