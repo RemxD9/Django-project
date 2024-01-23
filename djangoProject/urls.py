@@ -15,7 +15,7 @@ urlpatterns = [
     path('geography/', views.geography, name='География'),
     path('skills/', views.skills, name='Навыки'),
     path('lastvacancies/', views.last_vacancies, name='Последние вакансии'),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
 ]
 
 # Добавление URL-шаблонов для обслуживания медиа-файлов в режиме отладки

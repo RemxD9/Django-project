@@ -9,6 +9,11 @@
             <img src="{% static 'img/user.svg' %}" width="16" height="18" alt="Кабинет пользователя">
         </a>
         <ul class="site-navigation">
+            {% if user.is_staff or user.is_superuser %}
+                <li class="site-navigation-item">
+                    <a href="{% url 'admin' %}">Админка</a>
+                </li>
+            {% endif %}
           <li class="site-navigation-item">
             <a href="{% url 'home' %}">Главная</a>
           </li>
