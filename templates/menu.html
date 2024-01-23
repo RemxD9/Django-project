@@ -11,7 +11,7 @@
         <ul class="site-navigation">
             {% if user.is_staff or user.is_superuser %}
                 <li class="site-navigation-item">
-                    <a href="{% url 'admin' %}">Админка</a>
+                     <a href="/admin/">Админка</a>
                 </li>
             {% endif %}
           <li class="site-navigation-item">
